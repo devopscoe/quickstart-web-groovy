@@ -150,13 +150,9 @@ from "$buildDir/reports/tests/"
 			
 		}
 		repositories {
-			maven {
-				url releasesRepoPath
-				credentials {
-					username = repoUserName
-					password = repoPassword
-				}
-			}
+		        //mavenLocal()
+			mavenCentral()
+			//jcenter()
 		}
 	}
 	
