@@ -16,8 +16,9 @@ ext.config = parsedConfig
 
 buildscript {
     repositories {
-	mavenLocal()
-	//jcenter()
+	//mavenLocal()
+	mavenCentral()
+	jcenter()
    }
 
     dependencies {
