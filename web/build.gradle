@@ -4,7 +4,7 @@ task wrapper(type: Wrapper) {
 
 buildscript {
     repositories {
-        mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath 'com.github.kulya:jmeter-gradle-plugin:1.3.2-2.6'
@@ -33,26 +33,6 @@ project(':web') {
 	apply plugin: 'maven-publish'
 	apply plugin: 'com.bmuschko.cargo'
 
-	repositories {
-		maven {
-			url binaryRepositoryJCenterLocalUrl
-			credentials {
-				username = binaryRepositoryUserName
-				password = binaryRepositoryPassword
-			}
-		}
-		mavenCentral()
-		maven {
-			url binaryRepositoryMavenLocalUrl
-			credentials {
-				username = binaryRepositoryUserName
-				password = binaryRepositoryPassword
-			}
-		}
-	    jcenter()	
-		maven { url "http://repo.maven.apache.org/maven2" }
-	}
-
 	dependencies {
 	    compile group: 'commons-io', name: 'commons-io', version: '1.4'
 	    compile group: 'log4j', name: 'log4j', version: '1.2.15', ext: 'jar'
@@ -60,7 +40,7 @@ project(':web') {
 	    compile 'org.codehaus.groovy:groovy-all:2.3.10'
 
 	    compile 'org.seleniumhq.selenium:selenium-java:2.46.0'
-        compile 'org.testng:testng:6.8'
+	 compile 'org.testng:testng:6.8'
 
         }
 
@@ -170,10 +150,10 @@ from "$buildDir/reports/tests/"
 		}
 		repositories {
 			maven {
-				url binaryRepositoryReleasesUrl
+				url releasesRepoPath
 				credentials {
-					username = binaryRepositoryUserName
-					password = binaryRepositoryPassword
+					username = repoUserName
+					password = repoPassword
 				}
 			}
 		}
@@ -181,7 +161,7 @@ from "$buildDir/reports/tests/"
 	
 	repositories {
 		maven {
-			url binaryRepositoryReleasesUrl 
+			url releasesRepoPath 
 		}
 	}
 	configurations {
@@ -200,7 +180,7 @@ from "$buildDir/reports/tests/"
 
 	task downloadBinaryArchive(type: Copy) {		
 		from configurations.downloadWar
-		into "$buildDir\\libs"		
+		into "$buildDir/libs"		
 	}
 
 	cargo {
