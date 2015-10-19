@@ -157,9 +157,9 @@ from "$buildDir/reports/tests/"
 	}
 	
 	repositories {
-		maven {
-			url releasesRepoPath 
-		}
+	        //mavenLocal()
+		mavenCentral()
+		//jcenter()
 	}
 	configurations {
 		downloadWar
